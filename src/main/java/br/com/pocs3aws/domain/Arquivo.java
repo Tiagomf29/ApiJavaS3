@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Arquivo {
 
-	private String nome;
 	private String diretorioArquivoS3;
 	private String diretorioArquivocomputador;
+	private String urlArquivo;
 }

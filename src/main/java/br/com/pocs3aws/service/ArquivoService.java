@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import br.com.pocs3aws.exceptions.ExceptionNaoExisteArquivo;
 import br.com.pocs3aws.exceptions.ExceptionNaoExisteBucket;
@@ -26,7 +27,7 @@ public class ArquivoService {
 			amazonS3.putObject(nomeBucket,destinoBucket,new File(origemArquivo));
 	}
 	
-	public List<String>listarArquivos(String nomeBucket){
+	public List<S3ObjectSummary>listarArquivos(String nomeBucket){
 		ObjectListing listaObjetos = null;
 		if(!amazonS3.doesBucketExistV2(nomeBucket)) {
 			throw new ExceptionNaoExisteBucket();
@@ -36,7 +37,7 @@ public class ArquivoService {
 		
 		return listaObjetos.getObjectSummaries()
 				.stream()
-				.map(sumario -> sumario.getKey())
+				.map(sumario -> sumario)
 				.collect(Collectors.toList());
 	}
 	

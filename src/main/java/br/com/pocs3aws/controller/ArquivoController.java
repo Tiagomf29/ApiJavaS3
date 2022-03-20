@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+
 import br.com.pocs3aws.domain.Arquivo;
 import br.com.pocs3aws.service.ArquivoService;
 
@@ -32,7 +34,7 @@ public class ArquivoController {
 	}
 	
 	@GetMapping("/arquivos/{nomeBucket}")
-	public List<String> listar(@PathVariable String nomeBucket){
+	public List<S3ObjectSummary> listar(@PathVariable String nomeBucket){
 		return arquivoService.listarArquivos(nomeBucket);
 	}
 	

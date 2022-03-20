@@ -25,6 +25,7 @@ public class AmazonS3Config {
 					.standard()
 					.withCredentials(new AWSStaticCredentialsProvider(credenciais))
 					.withRegion(Regions.US_EAST_1)
+					.enableForceGlobalBucketAccess()
 					.build();	
 		
 		return clienteS3;
